@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- 服务调用代理工厂 -->
+	<bean id="serviceInvokerProxyFactory" class="cn.weforward.protocol.client.proxy.ServiceInvokerProxyFactory">
+		<constructor-arg index="0" value="${weforward.apiUrl}" />
+		<constructor-arg index="1" value="${weforward.service.accessId}" />
+		<constructor-arg index="2" value="${weforward.service.accessKey}" />
+	</bean>
+	
+	<!-- devops代理 -->
+	<bean id="devopsProxy" factory-bean="serviceInvokerProxyFactory" factory-method="openProxy">
+		<constructor-arg index="0" value="devops" />
+		<constructor-arg index="1" value="/devops/" />
+	</bean>
+	
+	<!-- 机器方法集 -->
+	<bean id="machineMethods" factory-bean="devopsProxy"
+		factory-method="newProxy">
+		<constructor-arg index="0" value="cn.weforward.agent.MachineMethods" />
+	</bean>
+	
+</beans>
