@@ -86,7 +86,7 @@
 							<mainVersion>1.1</mainVersion>
 							<outputDirectory>bin</outputDirectory>
 							<fatjar>true</fatjar>
-							<withSource>false</withSource>
+							<autoupload>true</autoupload>
 							<mainClass>cn.weforward.boot.SpringXmlApp</mainClass>
 							<excludes>
 								<exclude>script/**</exclude>
