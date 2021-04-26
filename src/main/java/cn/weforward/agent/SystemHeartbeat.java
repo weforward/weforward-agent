@@ -200,7 +200,7 @@ public class SystemHeartbeat implements Runnable {
 			MachineInfoParam param = new MachineInfoParam();
 			param.setName(name);
 			param.setInfo(info);
-			m_Methods.heartbeat(param);
+		 	m_Methods.heartbeat(param);
 		}
 	}
 
