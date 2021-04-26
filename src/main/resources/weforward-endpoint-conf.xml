@@ -19,6 +19,8 @@
 		<constructor-arg index="0" value="${metrics.url}"/>
 		<property name="serviceNo" value="${weforward.serverid}" />
 		<property name="serviceName" value="${weforward.name}" />
+		<property name="userName" value="${weforward.service.accessId}"/>
+		<property name="password" value="${weforward.service.accessKey}"/>
 	</bean>
 	
 </beans>
