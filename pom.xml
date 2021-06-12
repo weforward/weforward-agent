@@ -32,8 +32,8 @@
 	</properties>
 
 	<scm>
-		<url>https://codeup.aliyun.com/5faca4d322a8c7ff39350b14/weforward/wefoward-agent.git</url>
-		<tag>https://codeup.aliyun.com/5faca4d322a8c7ff39350b14/weforward/wefoward-agent.git</tag>
+		<url>https://github.com/weforward/weforward-agent.git</url>
+		<tag>https://github.com/weforward/weforward-agent.git</tag>
 	</scm>
 
 	<dependencies>
@@ -46,17 +46,17 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>weforward-framework</artifactId>
-			<version>1.1.0</version>
+			<version>1.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.9</version>
+			<version>1.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.2</version>
+			<version>1.7.25</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -81,7 +81,7 @@
 					<plugin>
 						<groupId>cn.weforward</groupId>
 						<artifactId>build-maven-plugin</artifactId>
-						<version>1.1.1</version>
+						<version>1.2.0</version>
 						<configuration>
 							<mainVersion>1.1</mainVersion>
 							<outputDirectory>bin</outputDirectory>
