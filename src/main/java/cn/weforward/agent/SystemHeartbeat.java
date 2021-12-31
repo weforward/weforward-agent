@@ -25,6 +25,7 @@ import cn.weforward.agent.MachineMethods.MachineInfoParam;
 import cn.weforward.agent.util.OsMemory;
 import cn.weforward.common.sys.VmStat;
 import cn.weforward.common.util.StringUtil;
+import cn.weforward.metrics.RemoteMeterRegistry;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.ImmutableTag;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -80,6 +81,7 @@ public class SystemHeartbeat implements Runnable {
 
 	public void setMeterRegistry(MeterRegistry register) {
 		for (String name : m_Names) {
+			_Logger.info(name + " " + toString(register));
 			Tags tags = Tags.of(new ImmutableTag("name", name));
 			TimeGauge.builder("weforward.agent.starttime", this, TimeUnit.MILLISECONDS, SystemHeartbeat::getStartTime)
 					.tags(tags).register(register);
@@ -112,6 +114,13 @@ public class SystemHeartbeat implements Runnable {
 						.strongReference(true).register(register);
 			}
 		}
+	}
+
+	private String toString(MeterRegistry register) {
+		if (register instanceof RemoteMeterRegistry) {
+			return ((RemoteMeterRegistry) register).getUrls().toString();
+		}
+		return register.toString();
 	}
 
 	public void setInterval(int interval) {
@@ -200,7 +209,7 @@ public class SystemHeartbeat implements Runnable {
 			MachineInfoParam param = new MachineInfoParam();
 			param.setName(name);
 			param.setInfo(info);
-		 	m_Methods.heartbeat(param);
+			m_Methods.heartbeat(param);
 		}
 	}
 
